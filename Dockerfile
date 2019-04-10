@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM debian:stretch
 MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
 RUN groupadd -r node && useradd -m -g node node
@@ -16,6 +16,8 @@ ENV BUILD_SCRIPTS_DIR /opt/build_scripts
 # Add entrypoint and build scripts
 COPY scripts $BUILD_SCRIPTS_DIR
 RUN chmod -R 750 $BUILD_SCRIPTS_DIR
+
+ONBUILD RUN cd $BUILD_SCRIPTS_DIR && ls -l && cd /
 
 ONBUILD ARG NODE_VERSION
 ONBUILD ENV NODE_VERSION ${NODE_VERSION:-8.11.0}

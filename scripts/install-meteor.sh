@@ -10,6 +10,8 @@ if [ "$DEV_BUILD" = true ]; then
 else
   cp .meteor/release $APP_SOURCE_DIR
 
+  printf "\n[-] Downloading Meteor $METEOR_VERSION...\n\n"
+
   # download installer script
   curl -v https://install.meteor.com -o /tmp/install_meteor.sh
 
